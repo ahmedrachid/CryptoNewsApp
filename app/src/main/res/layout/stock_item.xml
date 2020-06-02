@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="88dp"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <ImageView
+        android:id="@+id/stock_icon"
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:src="@drawable/money"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:gravity="right"
+        android:orientation="vertical"
+        android:layout_marginRight="20dp">
+
+        <TextView
+            android:id="@+id/current_value"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:text="7000$"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold"
+            android:textAppearance="?android:textAppearanceLarge"
+
+            />
+
+        <TextView
+            android:id="@+id/open_value"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:text="6500"
+            android:textAppearance="?android:textAppearanceMedium"
+            />
+
+        <TextView
+            android:id="@+id/difference_percentage"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            tools:text="+5%"
+            />
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

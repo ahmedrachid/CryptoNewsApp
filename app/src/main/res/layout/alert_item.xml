@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="10dp">
+    <ImageView
+        android:layout_width="88dp"
+        android:layout_height="88dp"
+        android:layout_marginRight="10dp"/>
+    <TextView
+        android:id="@+id/stock_name_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-medium"
+        android:textAppearance="?android:textAppearanceMedium"
+        android:textColor="#2B3D4D"
+        android:textSize="30dp"
+        android:hint="bitcoin"
+        android:paddingRight="10dp"/>
+
+    <TextView
+        android:paddingLeft="10dp"
+        android:id="@+id/more_less_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:textColor="#AEB6BD"
+        android:textSize="30dp"
+        android:hint="%3C"/>
+
+    <TextView
+        android:paddingLeft="10dp"
+        android:id="@+id/value_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif"
+        android:textAppearance="?android:textAppearanceSmall"
+        android:textColor="#AEB6BD"
+        android:hint="5000$"
+        android:textSize="30dp"/>
+  
+</LinearLayout>

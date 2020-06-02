@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Digger</string>
-    <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_alert">Alert</string>
+    <string name="title_news">News</string>
+    <string name="title_model">Model</string>
+    <string name="empty_view_title_text"> Create a new alert and get notified about the price changes </string>
+
+
 </resources>
