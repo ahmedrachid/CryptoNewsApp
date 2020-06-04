@@ -16,9 +16,11 @@ public class AlertViewModel extends ViewModel {
 
     private MutableLiveData<ArrayList<Alert>> alerts = new MutableLiveData<ArrayList<Alert>>();
 
-    public AlertViewModel() {
 
-    }
+    private  AlertAsyncTask task = new AlertAsyncTask();
+    public AlertViewModel() {
+      //  task.execute();
+  }
 
 
     public LiveData<ArrayList<Alert>> getAlerts() {
@@ -30,7 +32,9 @@ public class AlertViewModel extends ViewModel {
         @Override
         protected ArrayList<Alert> doInBackground(String... urls) {
 
-            ArrayList<Alert>  result = QueryUtils.fetchAlerts(urls[0]);
+            ArrayList<Alert>  result = QueryUtils.fetchAlerts(
+                    "https://5959168fce25.ngrok.io//getalerts"
+);
 
             return  result;
         }
@@ -42,6 +46,9 @@ public class AlertViewModel extends ViewModel {
 
         }
     }
+
+
+
 
 
 

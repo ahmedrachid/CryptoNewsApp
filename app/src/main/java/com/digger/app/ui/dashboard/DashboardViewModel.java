@@ -20,16 +20,17 @@ public class DashboardViewModel extends ViewModel {
     private MutableLiveData<ArrayList<Stock>> mStockMarketIndices;
     StockAsyncTask stockFetcher  = new StockAsyncTask();
     public void fetchDataStock(){
-        ArrayList<Stock> stocks = new ArrayList<Stock>();
-        stocks.add(new Stock(1,"bitcoin",new Double(7000),new Double(7500),new Double(5),null));
-        stocks.add(new Stock(1,"bitcoin",new Double(7000),new Double(7500),new Double(5),null));
+//        ArrayList<Stock> stocks = new ArrayList<Stock>();
+//        stocks.add(new Stock(1,"bitcoin",new Double(7000),new Double(7500),new Double(5),null));
+//        stocks.add(new Stock(1,"bitcoin",new Double(7000),new Double(7500),new Double(5),null));
 
-        mCrypto.postValue(stocks);
+        stockFetcher = new StockAsyncTask ();
+        stockFetcher.execute();
+
+
         // TODO:
 
-
-
-        refresh(10000);
+        refresh(5000);
 
 
     }
@@ -73,7 +74,7 @@ public class DashboardViewModel extends ViewModel {
         @Override
         protected AllStocks doInBackground(String... urls) {
 
-            AllStocks  result = QueryUtils.fetchStockData(urls[0]);
+            AllStocks  result = QueryUtils.fetchStockData("https://5959168fce25.ngrok.io/market" );
 
             return  result;
         }

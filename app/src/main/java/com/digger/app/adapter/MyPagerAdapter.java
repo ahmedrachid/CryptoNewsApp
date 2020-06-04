@@ -25,10 +25,12 @@ public class MyPagerAdapter extends FragmentStatePagerAdapter {
                 fragment = new CryptoFragment();
                 break;
             case 1:
-                fragment = new RawMaterialsFragment();
+                fragment = new StockMarketIndicesFragment();
+
                 break;
             case 2:
-                fragment = new StockMarketIndicesFragment();
+                fragment = new RawMaterialsFragment();
+
                 break;
         }
 

@@ -8,16 +8,19 @@ import lombok.Data;
 @AllArgsConstructor
 public class Stock {
 
-    private Integer mId;
+    private String id;
 
-    private String mName;
 
-    private Double mCurrentValue;
+    private Double marketOpen;
 
-    private Double mOpen;
+    private Double previousClose;
 
-    private  Double mPercentage;
+    private  Double regularMarketChangePercent;
 
-    private String mDaysRange;
+    private Double regularMarketPrice;
+
+    private String symbol;
+
+    private  String urlImage;
 
 }

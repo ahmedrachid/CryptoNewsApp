@@ -80,7 +80,20 @@ public class AddAlertActivity extends Activity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String stock = (String) parent.getItemAtPosition(position);
 
-                editorViewModel.setStock(stock);
+
+                switch (stock) {
+                    case "Bitcoin":
+                        editorViewModel.setStock("BTC-USD");
+                        break;
+
+                    case "Gold":
+                        editorViewModel.setStock("GC=F");
+                        break;
+                    case "Oil":
+                        editorViewModel.setStock("CL=F");
+                        break;
+                }
+
             }
 
             @Override

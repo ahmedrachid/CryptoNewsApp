@@ -11,20 +11,29 @@ import com.onesignal.OneSignal;
 import android.Manifest;
 import android.app.Activity;
 import android.content.pm.PackageManager;
+import android.os.AsyncTask;
 import android.telephony.TelephonyManager;
 import android.content.Context;
 import android.util.Log;
+
+import java.util.ArrayList;
 
 
 class EditorViewModel extends ViewModel {
 
     final private Context context;
 
-    private Alert createdAlert = new Alert();
+    private Alert createdAlert ;
 
     private String stock;
     private boolean more;
     private Double value;
+
+
+
+
+    private  AlertRegisterAsyncTask task = new AlertRegisterAsyncTask();
+
 
     EditorViewModel(Context context) {
         this.context = context;
@@ -40,8 +49,9 @@ class EditorViewModel extends ViewModel {
     }
 
     public void registerAlert() {
-        QueryUtils.saveAlert("", buildBodyFromAlert());
-        ((Activity) context).finish();
+
+        task.execute();
+
 
     }
 
@@ -100,4 +110,26 @@ class EditorViewModel extends ViewModel {
     public void setValue(Double value) {
         this.value = value;
     }
+
+    public class AlertRegisterAsyncTask extends AsyncTask<String, Void, Void> {
+
+        @Override
+        protected Void doInBackground(String... urls) {
+            QueryUtils.saveAlert("https://5959168fce25.ngrok.io/saveAlert", buildBodyFromAlert());
+
+            return  null;
+        }
+
+        @Override
+        protected  void onPostExecute(Void result){
+
+            ((Activity) context).finish();
+
+
+
+        }
+    }
+
+
+
 }

@@ -19,95 +19,84 @@
     android:layout_width="300dp"
     android:layout_height="500dp"
     android:orientation="vertical"
+    android:padding="10dp"
 
     tools:context=".ui.alert.AddAlertActivity"
     >
 
     <LinearLayout
-        android:id="@+id/container_select_stock"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:gravity="center">
 
-        <!-- Label -->
         <TextView
-            android:text="@+id/select_stock"
-            style="@style/CategoryStyle" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Create New \n     Alerte"
+            android:layout_gravity="center"
+            android:fontFamily="sans-serif-medium"
+            android:textSize="25dp"
+            android:textStyle="bold"
+            />
 
         <!-- Input field -->
-        <LinearLayout
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:layout_weight="2"
-            android:orientation="vertical">
-
             <!-- Gender drop-down spinner -->
-            <Spinner
-                android:id="@+id/stocks_spinner"
-                android:layout_height="48dp"
-                android:layout_width="fill_parent"
-                android:paddingRight="16dp"
-                android:inputType="number"
-                android:spinnerMode="dropdown"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        <Spinner
+            android:id="@+id/stocks_spinner"
+            android:layout_height="25dp"
+            android:layout_width="280dp"
+            android:autofillHints="Select Stock"
+            android:inputType="number"
+            android:layout_marginTop="35dp"
+            android:paddingLeft="15dp"
+            android:spinnerMode="dropdown"
+            android:elevation="5dp"
+            android:background="@drawable/btn"/>
 
 
-        <TextView
-            android:text="Notify me when the price is"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
         <Spinner
             android:id="@+id/spinner_more_less"
-            android:layout_height="wrap_content"
-            android:layout_width="fill_parent"
-            android:spinnerMode="dropdown"/>
+            android:layout_height="25dp"
+            android:layout_width="280dp"
+            android:autofillHints="Select Stock"
+            android:inputType="number"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="15dp"
+            android:spinnerMode="dropdown"
+            android:elevation="5dp"
+            android:background="@drawable/btn"/>
 
 
-    </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-
-        <TextView
-            android:text="Value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            />
         <EditText
-        android:id="@+id/value"
-        android:hint="Enter the value"
-        android:inputType="textCapWords"
-        style="@style/EditorFieldStyle" />
+            android:id="@+id/value"
 
-    </LinearLayout>
-    <!-- Measurement category -->
-    <LinearLayout
-        android:id="@+id/container_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+            android:layout_width="280dp"
+            android:layout_height="45dp"
+            android:hint="1000 $"
+            android:layout_marginTop="10dp"
+            android:paddingLeft="15dp"
+            android:inputType="number"
+            android:elevation="5dp"
+            android:textColorHint="#DCDCDC"
+            />
 
-        <!-- Label -->
         <Button
             android:id="@+id/create"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Create"
+            android:layout_width="280dp"
+            android:layout_height="45dp"
+            android:text="Save alert"
+            android:textColor="#FFFFFF"
+            android:textAllCaps="false"
+            android:layout_marginTop="25dp"
+            android:elevation="5dp"
+            android:textSize="22dp"
+            android:background="@drawable/create_btn"
             >
         </Button>
 
+
     </LinearLayout>
+
 </LinearLayout>

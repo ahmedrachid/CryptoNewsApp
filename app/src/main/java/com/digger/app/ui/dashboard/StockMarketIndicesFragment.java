@@ -33,9 +33,6 @@ public class StockMarketIndicesFragment extends Fragment {
         recyclerView = new RecyclerView(getContext());
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        ArrayList<Stock> stocks = new ArrayList<>();
-        stocks.add(new Stock(1,"bitcoin",new Double(7000),new Double(7500),new Double(5),null));
-        stocks.add(new Stock(1,"bitcoin",new Double(7000),new Double(7500),new Double(5),null));
 
         final StockAdapter adapter = new StockAdapter();
 
@@ -45,6 +42,7 @@ public class StockMarketIndicesFragment extends Fragment {
             @Override
             public void onChanged(ArrayList<Stock> stocks) {
                 adapter.setStocks(stocks);
+                adapter.notifyDataSetChanged();
             }
         });
 

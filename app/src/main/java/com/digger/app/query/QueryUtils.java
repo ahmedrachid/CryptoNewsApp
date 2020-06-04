@@ -182,7 +182,6 @@ public class QueryUtils {
             urlConnection.setReadTimeout(60000);
             urlConnection.setConnectTimeout(60000);
             urlConnection.setRequestMethod(method);
-            urlConnection.connect();
 
             if (body != null) {
                 urlConnection.setDoOutput(true);
@@ -195,6 +194,7 @@ public class QueryUtils {
                 }
             }
 
+            urlConnection.connect();
 
             if (urlConnection.getResponseCode() == 200) {
                 inputStream = urlConnection.getInputStream();
@@ -360,30 +360,34 @@ public class QueryUtils {
             // which represents a list of features (or earthquakes).
             JSONArray crypto = baseJsonResponse.getJSONArray("crypto");
 
-            JSONArray stockMarketIndices = baseJsonResponse.getJSONArray("stockMarketIndices");
-            JSONArray rawMaterials = baseJsonResponse.getJSONArray("rawMaterials");
+            JSONArray stockMarketIndices = baseJsonResponse.getJSONArray("indice");
+            JSONArray rawMaterials = baseJsonResponse.getJSONArray("matieres premieres");
 
             for (int i = 0; i < crypto.length(); i++) {
 
                 JSONObject currentCrypto = crypto.getJSONObject(i);
 
 
-                JSONObject properties = currentCrypto.getJSONObject("properties");
 
-                Integer id = properties.getInt("id");
-
-                String name = properties.getString("name");
-
-                Double currentValue = properties.getDouble("currentValue");
-
-                Double open = properties.getDouble("open");
-
-                Double percentage = properties.getDouble("percentage");
-
-                String dayRange = properties.getString("percentage");
+                String id = currentCrypto.getString("id");
 
 
-                Stock stock = new Stock(id, name, currentValue, open, percentage, dayRange);
+                Double marketOpen = currentCrypto.getDouble("marketOpen");
+
+                Double PreviousClose = currentCrypto.getDouble("previousClose");
+
+                Double regularMarketChangePercent = currentCrypto.getDouble("regularMarketChangePercent");
+                Double regularMarketPrice = currentCrypto.getDouble("regularMarketPrice");
+
+                String symbol =  currentCrypto.getString("symbol");
+
+                String imageUrl =  currentCrypto.getString("image");
+
+
+
+
+                Stock stock = new Stock(id, marketOpen, PreviousClose, regularMarketChangePercent, regularMarketPrice,
+                        symbol  , imageUrl);
 
                 cryptoList.add(stock);
             }
@@ -394,22 +398,25 @@ public class QueryUtils {
                 JSONObject currentCrypto = rawMaterials.getJSONObject(i);
 
 
-                JSONObject properties = currentCrypto.getJSONObject("properties");
-
-                Integer id = properties.getInt("id");
-
-                String name = properties.getString("name");
-
-                Double currentValue = properties.getDouble("currentValue");
-
-                Double open = properties.getDouble("open");
-
-                Double percentage = properties.getDouble("percentage");
-
-                String dayRange = properties.getString("percentage");
+                String id = currentCrypto.getString("id");
 
 
-                Stock stock = new Stock(id, name, currentValue, open, percentage, dayRange);
+                Double marketOpen = currentCrypto.getDouble("marketOpen");
+
+                Double PreviousClose = currentCrypto.getDouble("previousClose");
+
+                Double regularMarketChangePercent = currentCrypto.getDouble("regularMarketChangePercent");
+                Double regularMarketPrice = currentCrypto.getDouble("regularMarketPrice");
+
+                String symbol =  currentCrypto.getString("symbol");
+
+                String imageUrl =  currentCrypto.getString("image");
+
+
+
+
+                Stock stock = new Stock(id, marketOpen, PreviousClose, regularMarketChangePercent, regularMarketPrice ,
+                        symbol  , imageUrl);
 
                 rawMaterialsList.add(stock);
             }
@@ -419,22 +426,26 @@ public class QueryUtils {
                 JSONObject currentCrypto = stockMarketIndices.getJSONObject(i);
 
 
-                JSONObject properties = currentCrypto.getJSONObject("properties");
 
-                Integer id = properties.getInt("id");
-
-                String name = properties.getString("name");
-
-                Double currentValue = properties.getDouble("currentValue");
-
-                Double open = properties.getDouble("open");
-
-                Double percentage = properties.getDouble("percentage");
-
-                String dayRange = properties.getString("percentage");
+                String id = currentCrypto.getString("id");
 
 
-                Stock stock = new Stock(id, name, currentValue, open, percentage, dayRange);
+                Double marketOpen = currentCrypto.getDouble("marketOpen");
+
+                Double PreviousClose = currentCrypto.getDouble("previousClose");
+
+                Double regularMarketChangePercent = currentCrypto.getDouble("regularMarketChangePercent");
+                Double regularMarketPrice = currentCrypto.getDouble("regularMarketPrice");
+
+                String symbol =  currentCrypto.getString("symbol");
+
+                String imageUrl =  currentCrypto.getString("image");
+
+
+
+
+                Stock stock = new Stock(id, marketOpen, PreviousClose, regularMarketChangePercent, regularMarketPrice,
+                        symbol  , imageUrl);
 
                 stockMarketIndicesList.add(stock);
             }
