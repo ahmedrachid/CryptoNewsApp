@@ -19,7 +19,7 @@ public class AlertViewModel extends ViewModel {
 
     private  AlertAsyncTask task = new AlertAsyncTask();
     public AlertViewModel() {
-      //  task.execute();
+        task.execute();
   }
 
 
@@ -33,7 +33,7 @@ public class AlertViewModel extends ViewModel {
         protected ArrayList<Alert> doInBackground(String... urls) {
 
             ArrayList<Alert>  result = QueryUtils.fetchAlerts(
-                    "https://5959168fce25.ngrok.io//getalerts"
+                    "http://a4bb16f2b859.ngrok.io/getalerts"
 );
 
             return  result;

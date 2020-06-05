@@ -25,7 +25,7 @@ android {
         applicationId "com.digger.app"
 
         manifestPlaceholders = [
-                onesignal_app_id: 'PUT_YOUR_ONESIGNAL_APP_ID_HERE',
+                onesignal_app_id: '7b5b7317-d2c6-4df7-8708-4256a7f306a0',
                 // Project number pulled from dashboard, local value is ignored.
                 onesignal_google_project_number: 'REMOTE'
         ]

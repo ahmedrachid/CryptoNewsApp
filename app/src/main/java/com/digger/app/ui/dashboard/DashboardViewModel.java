@@ -74,7 +74,7 @@ public class DashboardViewModel extends ViewModel {
         @Override
         protected AllStocks doInBackground(String... urls) {
 
-            AllStocks  result = QueryUtils.fetchStockData("https://5959168fce25.ngrok.io/market" );
+            AllStocks  result = QueryUtils.fetchStockData("https://a4bb16f2b859.ngrok.io/market" );
 
             return  result;
         }

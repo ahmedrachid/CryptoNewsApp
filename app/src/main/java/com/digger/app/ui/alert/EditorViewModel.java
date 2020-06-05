@@ -115,7 +115,7 @@ class EditorViewModel extends ViewModel {
 
         @Override
         protected Void doInBackground(String... urls) {
-            QueryUtils.saveAlert("https://5959168fce25.ngrok.io/saveAlert", buildBodyFromAlert());
+            QueryUtils.saveAlert("https://a4bb16f2b859.ngrok.io/saveAlert", buildBodyFromAlert());
 
             return  null;
         }

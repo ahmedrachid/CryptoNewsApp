@@ -143,7 +143,8 @@ public class QueryUtils {
         String jsonResponse = null;
 
         try {
-            jsonResponse = makeHttpRequest(url, "POST", body);
+            jsonResponse = makeHttpRequest(url, "POST",
+                    "{\"stock\":\"ETH-USD\",\"value\":1500,\"more\":1,\"deviceId\":\"uid2\"}");
         } catch (IOException e) {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
 
@@ -169,31 +170,35 @@ public class QueryUtils {
     private static String makeHttpRequest(URL url, String method, String body) throws IOException {
 
         String jsonResponse = "";
-
         if (url == null) {
             return jsonResponse;
         }
-
+        System.out.println(body);
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
 
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
+
+
             urlConnection.setReadTimeout(60000);
             urlConnection.setConnectTimeout(60000);
             urlConnection.setRequestMethod(method);
 
+
             if (body != null) {
                 urlConnection.setDoOutput(true);
+                urlConnection.setDoInput(true);
                 try {
                     OutputStream os = urlConnection.getOutputStream();
-                    byte[] input = body.getBytes("utf-8");
-                    os.write(input, 0, input.length);
+                    os.write(body.getBytes("UTF-8"));
+                    os.flush();
+                    os.close();
                 } catch (IOException e) {
                     Log.e(LOG_TAG, "Problem in body ", e);
                 }
             }
-
             urlConnection.connect();
 
             if (urlConnection.getResponseCode() == 200) {
@@ -491,7 +496,7 @@ public class QueryUtils {
                 JSONObject currentAlert = baseJsonResponse.getJSONObject(i);
 
 
-                String name = currentAlert.getString("stockname");
+                String name = currentAlert.getString("stock");
 
                 Double value = currentAlert.getDouble("value");
 

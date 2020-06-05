@@ -55,7 +55,7 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
                 more.setText(">");
             else
                 more.setText("<");
-            TextView value = alertItem.findViewById(R.id.difference_percentage);
+            TextView value = alertItem.findViewById(R.id.value_item);
             value.setText(Double.toString(alert.getValue()));
         }
 
