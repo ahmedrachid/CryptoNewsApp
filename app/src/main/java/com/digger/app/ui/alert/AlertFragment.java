@@ -112,9 +112,9 @@ public class AlertFragment extends Fragment {
 
         @Override
         protected Void doInBackground(Integer... id) {
-            String link = "http://efbf0692ba03.ngrok.io/deletealert/"+id[0];
+            String link = "https://ahmed-alerts.ndogga.com/deletealert/"+id[0];
 
-            QueryUtils.deleteAlert("http://efbf0692ba03.ngrok.io/deletealert/"+id[0]);
+            QueryUtils.deleteAlert("https://ahmed-alerts.ndogga.com/deletealert/"+id[0]);
                  return null;
 
         }

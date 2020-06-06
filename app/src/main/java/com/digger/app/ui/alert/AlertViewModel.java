@@ -41,7 +41,7 @@ public class AlertViewModel extends ViewModel {
         protected ArrayList<Alert> doInBackground(String... urls) {
             String UUID = OneSignal.getPermissionSubscriptionState().getSubscriptionStatus().getUserId();
             ArrayList<Alert>  result = QueryUtils.fetchAlerts(
-                    "http://efbf0692ba03.ngrok.io/getalertsUsr/"+UUID
+                    "https://ahmed-alerts.ndogga.com/getalertsUsr/"+UUID
 );
 
             return  result;

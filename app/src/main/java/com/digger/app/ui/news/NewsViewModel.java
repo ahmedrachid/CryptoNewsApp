@@ -47,7 +47,7 @@ public class NewsViewModel extends ViewModel {
         protected ArrayList<News> doInBackground(String... urls) {
 
             ArrayList<News>  result = QueryUtils.fetchNews(
-                    "https://889e03ca1d63.ngrok.io/newskeyword/"+urls[0]);
+                    "https://ahmed-newsapp.ndogga.com/newskeyword/"+urls[0]);
 
             return  result;
         }

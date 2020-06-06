@@ -45,7 +45,7 @@ public class ChartViewModel extends ViewModel {
         protected DataPlot doInBackground(String... urls) {
 
             DataPlot result = QueryUtils.fetchHistoryAndPrediction(
-                    "https://889e03ca1d63.ngrok.io/predictions");
+                    "https://ahmed-newsapp.ndogga.com/predictions");
 
             return  result;
         }

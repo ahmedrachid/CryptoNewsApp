@@ -44,7 +44,7 @@ public class ModelViewModel  extends ViewModel {
         protected DataPlot doInBackground(String... urls) {
 
             DataPlot result = QueryUtils.fetchSentimentAnalysis(
-                    "https://889e03ca1d63.ngrok.io/sentiment/bitcoin");
+                    "https://ahmed-newsapp.ndogga.com/sentiment/bitcoin");
 
             return  result;
         }
