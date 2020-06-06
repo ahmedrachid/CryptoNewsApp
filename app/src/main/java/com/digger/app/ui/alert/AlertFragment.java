@@ -1,11 +1,11 @@
 package com.digger.app.ui.alert;
 
-import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -13,15 +13,15 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.digger.app.MainActivity;
 import com.digger.app.R;
 import com.digger.app.adapter.AlertAdapter;
-import com.digger.app.adapter.StockAdapter;
 import com.digger.app.model.Alert;
-import com.digger.app.model.Stock;
+import com.digger.app.query.QueryUtils;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.onesignal.OneSignal;
 
 import java.util.ArrayList;
 
@@ -38,6 +38,8 @@ public class AlertFragment extends Fragment {
                 ViewModelProviders.of(this).get(AlertViewModel.class);
         recyclerView = root.findViewById(R.id.list_alert);
 
+        final View emptyView = root.findViewById(R.id.empty_view);
+
         final AlertAdapter adapter = new AlertAdapter();
 
         FloatingActionButton addButton = (FloatingActionButton) root.findViewById(R.id.add);
@@ -50,11 +52,49 @@ public class AlertFragment extends Fragment {
             }
         });
 
+
+
+
+
+
+        adapter.setListener(new DeleteListener() {
+            @Override
+            public void onClick(final Alert alert) {
+
+                new AlertDialog.Builder(getContext())
+                        .setIcon(android.R.drawable.ic_delete)
+                        .setTitle("Delete alert")
+                        .setMessage("Do you wante to delate this alert ?")
+                        .setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                DeleteAlertAsynTask task = new DeleteAlertAsynTask();
+                                task.execute(alert.getId());
+                                AlertFragment.this.onResume();
+
+                            }
+                        }).setNegativeButton("No",null)
+                        .show();
+
+            }
+        });
+
+
+
         alertViewModel.getAlerts().observe(this, new Observer<ArrayList<Alert>>() {
             @Override
             public void onChanged(ArrayList<Alert> alerts) {
                 adapter.setAlerts(alerts);
                 adapter.notifyDataSetChanged();
+                if (alerts.size() == 0) {
+                    recyclerView.setVisibility(View.GONE);
+                    emptyView.setVisibility(View.VISIBLE);
+                }
+                else {
+                    recyclerView.setVisibility(View.VISIBLE);
+                    emptyView.setVisibility(View.GONE);
+                }
+
             }
         });
 
@@ -62,5 +102,27 @@ public class AlertFragment extends Fragment {
         return root;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        alertViewModel.refreshAlerts();
+    }
+
+    private class DeleteAlertAsynTask extends AsyncTask<Integer, Void, Void> {
+
+        @Override
+        protected Void doInBackground(Integer... id) {
+            String link = "http://efbf0692ba03.ngrok.io/deletealert/"+id[0];
+
+            QueryUtils.deleteAlert("http://efbf0692ba03.ngrok.io/deletealert/"+id[0]);
+                 return null;
+
+        }
+
+        @Override
+        protected  void onPostExecute(Void result){
+
+        }
+    }
 
 }

@@ -9,6 +9,7 @@ import androidx.lifecycle.ViewModel;
 import com.digger.app.model.Alert;
 import com.digger.app.model.AllStocks;
 import com.digger.app.query.QueryUtils;
+import com.onesignal.OneSignal;
 
 import java.util.ArrayList;
 
@@ -17,10 +18,17 @@ public class AlertViewModel extends ViewModel {
     private MutableLiveData<ArrayList<Alert>> alerts = new MutableLiveData<ArrayList<Alert>>();
 
 
-    private  AlertAsyncTask task = new AlertAsyncTask();
+    private  AlertAsyncTask task ;
     public AlertViewModel() {
-        task.execute();
   }
+    public void refreshAlerts(){
+        if(task  == null ){
+            task = new AlertAsyncTask();
+            task.execute();
+        }
+        task = null;
+
+    }
 
 
     public LiveData<ArrayList<Alert>> getAlerts() {
@@ -31,9 +39,9 @@ public class AlertViewModel extends ViewModel {
 
         @Override
         protected ArrayList<Alert> doInBackground(String... urls) {
-
+            String UUID = OneSignal.getPermissionSubscriptionState().getSubscriptionStatus().getUserId();
             ArrayList<Alert>  result = QueryUtils.fetchAlerts(
-                    "http://a4bb16f2b859.ngrok.io/getalerts"
+                    "http://efbf0692ba03.ngrok.io/getalertsUsr/"+UUID
 );
 
             return  result;

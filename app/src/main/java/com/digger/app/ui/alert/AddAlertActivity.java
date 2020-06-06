@@ -57,6 +57,7 @@ public class AddAlertActivity extends Activity {
             @Override
             public void onClick(View v) {
                 String value = valueText.getText().toString().trim();
+                editorViewModel.setValue(Double.parseDouble(value));
                 if(isNumeric(value)){
                     editorViewModel.setCreatedAlert();
                     editorViewModel.registerAlert();
@@ -98,7 +99,7 @@ public class AddAlertActivity extends Activity {
 
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
-                editorViewModel.setStock("bitcoin");
+                editorViewModel.setStock("BTC-USD");
 
             }
         });
@@ -114,10 +115,10 @@ public class AddAlertActivity extends Activity {
                 String less = (String) parent.getItemAtPosition(position);
 
                 switch (less){
-                    case "less":
+                    case "Less":
                         editorViewModel.setMore(false);
                         break;
-                    case "more":
+                    case "More":
                         editorViewModel.setMore(true);
                         break;
                 }
@@ -128,6 +129,7 @@ public class AddAlertActivity extends Activity {
 
             }
         });
+
 
 
     }

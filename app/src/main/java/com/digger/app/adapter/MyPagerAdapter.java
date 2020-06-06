@@ -48,11 +48,11 @@ public class MyPagerAdapter extends FragmentStatePagerAdapter {
 
         switch (position) {
             case 0:
-                return "CRYPTO";
+                return "Crypto";
             case 1:
-                return "INDEXES";
+                return "Indexes";
             case 2:
-                return "STOCK";
+                return "Raw Material";
         }
 
         return "";

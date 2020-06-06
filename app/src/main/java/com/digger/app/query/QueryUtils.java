@@ -37,6 +37,22 @@ public class QueryUtils {
 
     }
 
+    public static void deleteAlert(String requestUrl){
+        URL url = createUrl(requestUrl);
+
+
+
+        try {
+             makeHttpRequest(url, "GET", null);
+        } catch (IOException e) {
+            Log.e(LOG_TAG, "Problem making the HTTP request.", e);
+
+        }
+
+
+
+    }
+
 
      public static DataPlot fetchSentimentAnalysis(String requestUrl){
          URL url = createUrl(requestUrl);
@@ -144,7 +160,7 @@ public class QueryUtils {
 
         try {
             jsonResponse = makeHttpRequest(url, "POST",
-                    "{\"stock\":\"ETH-USD\",\"value\":1500,\"more\":1,\"deviceId\":\"uid2\"}");
+                    body);
         } catch (IOException e) {
             Log.e(LOG_TAG, "Problem making the HTTP request.", e);
 
@@ -503,8 +519,10 @@ public class QueryUtils {
 
                 Boolean more = currentAlert.getBoolean("more");
 
+                int id = currentAlert.getInt("id");
 
-                Alert alert = new Alert(name, more, value);
+                Alert alert = new Alert(name, more, value,id);
+
 
                 alerts.add(alert);
             }

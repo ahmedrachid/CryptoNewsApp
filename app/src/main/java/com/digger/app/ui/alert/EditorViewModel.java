@@ -32,8 +32,7 @@ class EditorViewModel extends ViewModel {
 
 
 
-    private  AlertRegisterAsyncTask task = new AlertRegisterAsyncTask();
-
+    private  AlertRegisterAsyncTask task ;
 
     EditorViewModel(Context context) {
         this.context = context;
@@ -49,10 +48,12 @@ class EditorViewModel extends ViewModel {
     }
 
     public void registerAlert() {
+        if (task == null ){
+            task = new AlertRegisterAsyncTask();
+            task.execute();
+        }
 
-        task.execute();
-
-
+        task = null;
     }
 
     private String buildBodyFromAlert() {
@@ -115,7 +116,7 @@ class EditorViewModel extends ViewModel {
 
         @Override
         protected Void doInBackground(String... urls) {
-            QueryUtils.saveAlert("https://a4bb16f2b859.ngrok.io/saveAlert", buildBodyFromAlert());
+            QueryUtils.saveAlert("http://efbf0692ba03.ngrok.io/saveAlert", buildBodyFromAlert());
 
             return  null;
         }

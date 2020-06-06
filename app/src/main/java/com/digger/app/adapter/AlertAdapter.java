@@ -11,12 +11,20 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.digger.app.R;
 import com.digger.app.model.Alert;
 import com.digger.app.model.Stock;
+import com.digger.app.ui.alert.DeleteListener;
+import com.digger.app.ui.dashboard.StockListener;
 
 import java.util.ArrayList;
 
 public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> {
 
     private ArrayList<Alert> alerts = new ArrayList<Alert>();
+
+    private DeleteListener listener;
+
+    public void setListener(DeleteListener listener){
+        this.listener =listener;
+    }
 
     public void setAlerts(ArrayList<Alert> alerts) {
         this.alerts = alerts;
@@ -31,7 +39,13 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(@NonNull AlertAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AlertAdapter.ViewHolder holder, final int position) {
+        holder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listener.onClick(alerts.get(position));
+            }
+        });
         holder.setAlertItemView(alerts.get(position));
     }
 
@@ -44,7 +58,16 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
 
         private View alertItem;
 
+        private View.OnClickListener clickListener;
+
+        void setOnClickListener(View.OnClickListener onClickListener) {
+            clickListener = onClickListener;
+        }
+
+
+
         void setAlertItemView(Alert alert) {
+
 
             TextView stockName = alertItem.findViewById(R.id.stock_name_item);
             stockName.setText(alert.getStock());
@@ -57,6 +80,7 @@ public class AlertAdapter extends RecyclerView.Adapter<AlertAdapter.ViewHolder> 
                 more.setText("<");
             TextView value = alertItem.findViewById(R.id.value_item);
             value.setText(Double.toString(alert.getValue()));
+            alertItem.setOnClickListener(clickListener);
         }
 
         ViewHolder(@NonNull View itemView) {

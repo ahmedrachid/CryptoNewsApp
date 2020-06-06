@@ -114,7 +114,7 @@ public class StockAdapter extends RecyclerView.Adapter<StockAdapter.ViewHolder> 
                 stockItem.setOnClickListener(clickListener);
 
             TextView stockName = stockItem.findViewById(R.id.sock_name);
-            stockName.setText(stock.getSymbol());
+            stockName.setText(stock.getId());
 
             ImageView stockItemImage = stockItem.findViewById(R.id.stock_icon);
 

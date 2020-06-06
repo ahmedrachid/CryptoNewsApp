@@ -7,12 +7,23 @@ public class Alert {
     private  Double value;
     private String deviceId;
 
+    private int id ;
+
 
     public Alert(String stock, boolean more, Double value) {
         this.stock = stock;
         this.more = more;
         this.value = value;
     }
+
+
+    public Alert(String stock, boolean more, Double value,int id) {
+        this.stock = stock;
+        this.more = more;
+        this.value = value;
+        this.id = id;
+    }
+
 
     public Alert() {
     }
@@ -47,5 +58,9 @@ public class Alert {
 
     public void setDeviceId(String deviceId) {
         this.deviceId = deviceId;
+    }
+
+    public int getId() {
+        return id;
     }
 }
